@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeless Threads Receipt Sender</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="container bg-white shadow-xl rounded-xl p-6 md:p-8 w-full max-w-md">
+        <!-- Header Section -->
+        <div class="header flex items-center justify-center pb-4 mb-6 border-b border-gray-200">
+            <img src="https://placehold.co/40x40/ADD8E6/000000?text=Logo" alt="Timeless Threads Logo" class="h-10 w-10 mr-4 rounded-full">
+            <h1 class="text-2xl font-semibold text-gray-800">Timeless Threads</h1>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section space-y-5">
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Customer Phone Number</label>
+                <input type="tel" id="phone" placeholder="+267 71 234 567" class="input-field">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
+                <input type="email" id="email" placeholder="customer@example.com" class="input-field">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Items</label>
+                <div id="item-list" class="space-y-3">
+                    <!-- Initial item entry -->
+                    <div class="item-entry flex items-center gap-3">
+                        <input type="text" class="item-input" placeholder="Item name">
+                        <input type="number" step="0.01" class="item-input w-24" placeholder="Price">
+                        <button onclick="removeItem(this)" class="btn-danger p-2 text-sm">x</button>
+                    </div>
+                </div>
+                <button onclick="addItem()" class="btn-secondary w-full mt-4 text-sm">+ Add Item</button>
+            </div>
+
+            <div class="total-display text-right text-lg font-bold text-gray-800 pt-4 border-t border-gray-200">
+                Total: P<span id="total-amount">0.00</span>
+            </div>
+
+            <div class="checkboxes flex flex-col sm:flex-row sm:gap-6 mt-5">
+                <label class="inline-flex items-center text-gray-700">
+                    <input type="checkbox" id="send-text" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                    <span class="ml-2 text-sm">Send via Text</span>
+                </label>
+                <label class="inline-flex items-center text-gray-700 mt-2 sm:mt-0">
+                    <input type="checkbox" id="send-email" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                    <span class="ml-2 text-sm">Send via Email</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="buttons flex flex-col space-y-3 mt-6">
+            <button onclick="generateReceiptPreview()" class="btn-primary w-full shadow-lg">Generate Receipt</button>
+            <button onclick="clearForm()" class="btn-secondary w-full">Clear Form</button>
+            <button onclick="backToPOS()" class="btn-secondary w-full">Back to POS</button>
+        </div>
+
+        <!-- Status Message -->
+        <div id="status" class="status text-center text-sm mt-4 text-gray-600"></div>
+    </div>
+
+    <!-- Confirmation Modal (Hidden by default) -->
+    <div id="confirmation-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Confirm Receipt Details</h3>
+            <pre id="modal-preview" class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700 whitespace-pre-wrap mb-6 border border-gray-200"></pre>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeModal()" class="btn-secondary">Cancel</button>
+                <button onclick="sendReceipt()" class="btn-success">Send Receipt</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
